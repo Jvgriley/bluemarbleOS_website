@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Blue Marble Intel — Environmental Intelligence Platform</title>
+  <meta name="description" content="Blue Marble Intel turns ocean and environmental data into intelligence and real-world intervention. Data first. Intelligence next. Intervention follows." />
+  <meta name="theme-color" content="#04070f" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blue Marble Intel — Environmental Intelligence Platform" />
+  <meta property="og:description" content="A 3D environmental intelligence platform. Visualise ocean health, predict environmental risk, and intervene in the real world." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon (uses your existing logo) -->
+  <link rel="icon" href="Bluemarble%20logo%20noBG.png" type="image/png" />
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- =====================================================
+  GLOBAL ATMOSPHERE — fixed backdrop, sits behind all content.
+  Three CSS-only layers: radar sweep, drifting caustics, noise.
+====================================================== -->
+<div class="atmo" aria-hidden="true">
+  <div class="atmo__sweep"></div>
+  <div class="atmo__caustic atmo__caustic--a"></div>
+  <div class="atmo__caustic atmo__caustic--b"></div>
+  <div class="atmo__noise"></div>
+</div>
+
+<!-- =====================================================
+  NAVIGATION
+====================================================== -->
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a class="brand" href="#top" aria-label="Blue Marble Intel home">
+      <img class="brand__logo" src="Bluemarble%20logo%20noBG.png" alt="" aria-hidden="true" />
+      <span class="brand__name">BLUE&nbsp;MARBLE<span class="brand__intel">&nbsp;INTEL</span></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#platform">Platform</a>
+      <a href="#roadmap">V1 · V2 · V3</a>
+      <a href="#exploration">Exploration</a>
+      <a href="#partners">Partners</a>
+      <a href="#founder">Founder</a>
+    </nav>
+    <a href="#contact" class="btn btn--ghost nav__cta">Partner with us</a>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__mobile" id="mobileMenu" hidden>
+    <a href="#platform">Platform</a>
+    <a href="#roadmap">V1 · V2 · V3</a>
+    <a href="#exploration">Exploration</a>
+    <a href="#partners">Partners</a>
+    <a href="#founder">Founder</a>
+    <a href="#contact" class="btn btn--primary">Partner with us</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- =====================================================
+  1. HERO — interactive WebGL globe behind the headline
+====================================================== -->
+<section class="hero">
+  <canvas id="globe" aria-hidden="true"></canvas>
+  <div class="hero__bloom" aria-hidden="true"></div>
+  <div class="hero__caustics" aria-hidden="true"></div>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="hero__inner container">
+    <p class="eyebrow"><span class="eyebrow__pulse"></span>Environmental intelligence, from orbit to ocean</p>
+    <h1 class="hero__title">
+      The planet,<br/>
+      <span class="grad">understood in real time.</span>
+    </h1>
+    <p class="hero__sub">
+      Blue Marble Intel is a 3D environmental intelligence platform — visualising ocean health,
+      forecasting environmental risk, and powering real-world intervention.
+    </p>
+    <div class="hero__cta">
+      <a href="#roadmap" class="btn btn--primary">Explore the platform</a>
+      <a href="#contact" class="btn btn--ghost">Partner with us</a>
+    </div>
+    <div class="hero__stats">
+      <div><strong>1</strong><span>Living planet</span></div>
+      <div><strong>3</strong><span>Phase platform</span></div>
+      <div><strong>∞</strong><span>Data layers</span></div>
+    </div>
+  </div>
+  <a class="hero__scroll" href="#about" aria-label="Scroll to next section">
+    <span></span>
+  </a>
+</section>
+
+<!-- =====================================================
+  2. WHAT BLUE MARBLE IS
+====================================================== -->
+<section class="section section--about" id="about">
+  <div class="container grid grid--split">
+    <div>
+      <p class="eyebrow">What we are</p>
+      <h2 class="h2">
+        A serious technology company<br/>
+        <span class="muted">with environmental purpose.</span>
+      </h2>
+    </div>
+    <div class="about__body">
+      <p class="lead">
+        Blue Marble Intel uses spatial data, AI, and robotics to make the health of our oceans
+        and environment legible — to scientists, governments, investors, and the public.
+      </p>
+      <p>
+        We believe the same tools that powered the last decade of consumer technology should now
+        be turned outward, toward the planet itself. <strong>Data first. Intelligence next. Intervention follows.</strong>
+      </p>
+      <ul class="ticks">
+        <li>Using technology for good</li>
+        <li>New efforts to clean up old messes</li>
+        <li>Conservation through exploration</li>
+        <li>Ocean health is connected to all life on Earth</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  3. THREE-PHASE PLATFORM ROADMAP — V1, V2, V3
+====================================================== -->
+<section class="section section--roadmap" id="roadmap">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">The three-phase platform</p>
+      <h2 class="h2">From <span class="grad">seeing</span> to <span class="grad">predicting</span> to <span class="grad">acting</span>.</h2>
+    </div>
+
+    <div class="roadmap">
+      <article class="phase phase--v1" id="platform">
+        <span class="phase__corners" aria-hidden="true"></span>
+        <div class="phase__num">V1</div>
+        <h3 class="phase__title">Data Visualisation</h3>
+        <p class="phase__tag">See the planet, layer by layer.</p>
+        <p>
+          A 3D environmental intelligence platform showing water health, ocean data, pollution
+          indicators, environmental layers, and location-based insights — all in one interface.
+        </p>
+        <ul class="chips">
+          <li>Ocean health</li><li>Pollution</li><li>Water quality</li><li>Spatial layers</li>
+        </ul>
+      </article>
+
+      <article class="phase phase--v2">
+        <span class="phase__corners" aria-hidden="true"></span>
+        <div class="phase__num">V2</div>
+        <h3 class="phase__title">Predictive Intelligence</h3>
+        <p class="phase__tag">AI that forecasts environmental risk.</p>
+        <p>
+          AI-powered forecasting that surfaces environmental risk, projects change over time,
+          and highlights where intervention is needed most — before damage is irreversible.
+        </p>
+        <ul class="chips">
+          <li>Forecasting</li><li>Risk scoring</li><li>Change detection</li><li>Anomalies</li>
+        </ul>
+      </article>
+
+      <article class="phase phase--v3">
+        <span class="phase__corners" aria-hidden="true"></span>
+        <div class="phase__num">V3</div>
+        <h3 class="phase__title">Real-World Intervention</h3>
+        <p class="phase__tag">Robotics. Sensors. Ocean cleaning.</p>
+        <p>
+          Drones, sensors, and ocean-cleaning devices that collect field data and act on it —
+          a closed loop between the platform and the planet it observes.
+        </p>
+        <ul class="chips">
+          <li>Drones</li><li>Sensors</li><li>Cleaning systems</li><li>Field data</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  4. CONSERVATION THROUGH EXPLORATION
+====================================================== -->
+<section class="section section--explore" id="exploration">
+  <div class="container grid grid--split">
+    <div>
+      <p class="eyebrow">Conservation through exploration</p>
+      <h2 class="h2">
+        You can't protect what you've never <span class="grad">seen</span>.
+      </h2>
+      <p class="lead">
+        Exploration creates understanding. Understanding creates care. Care creates action.
+        Blue Marble Intel is built on the belief that exposing the planet's data — clearly,
+        beautifully, and at scale — is itself an act of conservation.
+      </p>
+      <a href="#contact" class="btn btn--ghost">Join the mission</a>
+    </div>
+    <div class="explore__visual" aria-hidden="true">
+      <div class="ring ring--1"></div>
+      <div class="ring ring--2"></div>
+      <div class="ring ring--3"></div>
+      <div class="orb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  5. PLATFORM FEATURES / DATA LAYERS
+====================================================== -->
+<section class="section section--layers">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Data layers &amp; capabilities</p>
+      <h2 class="h2">One platform. <span class="grad">Every layer of the planet.</span></h2>
+    </div>
+    <div class="layers">
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/><path d="M3 17c3-4 6-4 9 0s6 4 9 0"/><path d="M3 7c3-4 6-4 9 0s6 4 9 0"/></svg>
+        </div>
+        <h4>Ocean &amp; water health</h4>
+        <p>Temperature, salinity, pollution, plastics, oxygen, and biodiversity indicators.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+        </div>
+        <h4>Global spatial layers</h4>
+        <p>Satellite imagery, currents, coastlines, ecosystems — all on a single 3D globe.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V8m6 12V4m6 16v-8m4 8V10"/></svg>
+        </div>
+        <h4>Predictive analytics</h4>
+        <p>AI forecasts of risk, change, and intervention opportunities over time.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 6 6 .9-4.5 4.2 1 6.4L12 16.8 6.5 19.5l1-6.4L3 8.9 9 8z"/></svg>
+        </div>
+        <h4>Field intervention</h4>
+        <p>Robotics, drones, and sensors feeding the platform with ground-truth data.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M7 14h4"/></svg>
+        </div>
+        <h4>Decision dashboards</h4>
+        <p>Built for policy, partners, and operators — clear, exportable, defensible.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h10M4 17h16"/><circle cx="18" cy="12" r="2"/></svg>
+        </div>
+        <h4>API &amp; integrations</h4>
+        <p>Stream Blue Marble Intel into your existing tools, models, and operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  6. IMPACT PARTNERS / BRAND PARTNERSHIPS
+====================================================== -->
+<section class="section section--partners" id="partners">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Impact partners</p>
+      <h2 class="h2">Built with scientists, operators, and<br/><span class="grad">brands that mean it.</span></h2>
+      <p class="muted partners__intro">Drop partner and brand logos into <code>/assets/partners/</code> and replace the placeholders below.</p>
+    </div>
+    <div class="partners">
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  7. LEADERSHIP — compact 2-up executive cards
+====================================================== -->
+<section class="section section--execs" id="founder">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Leadership</p>
+      <h2 class="h2">The team building <span class="grad">planetary intelligence</span>.</h2>
+    </div>
+    <div class="execs">
+      <article class="exec">
+        <div class="exec__photo" aria-hidden="true">
+          <!-- Replace with: <img src="assets/jack-riley.jpg" alt="Jack Riley" /> -->
+          <span class="exec__initials">JR</span>
+        </div>
+        <div class="exec__body">
+          <h3 class="exec__name">Jack Riley</h3>
+          <p class="exec__role">CEO &amp; Founder</p>
+          <p class="exec__bio">
+            Founded Blue Marble Intel to turn spatial data, AI, and robotics toward the planet —
+            from visualising ocean health to deploying the systems that act on it.
+          </p>
+          <a href="#" class="exec__link">LinkedIn →</a>
+        </div>
+      </article>
+      <article class="exec">
+        <div class="exec__photo" aria-hidden="true">
+          <!-- Replace with: <img src="assets/daniel-stanley.jpg" alt="Daniel Stanley" /> -->
+          <span class="exec__initials">DS</span>
+        </div>
+        <div class="exec__body">
+          <h3 class="exec__name">Daniel Stanley</h3>
+          <p class="exec__role">COO &amp; Founder</p>
+          <p class="exec__bio">
+            Leads operations and partnerships — translating Blue Marble Intel's environmental
+            intelligence into the field across science, industry, and capital.
+          </p>
+          <a href="#" class="exec__link">LinkedIn →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  8. CALL TO ACTION — partners, investors, collaborators
+====================================================== -->
+<section class="section section--cta" id="contact">
+  <div class="container cta">
+    <p class="eyebrow">Partners · Investors · Collaborators</p>
+    <h2 class="h2 cta__title">
+      Help us build the <span class="grad">intelligence layer for Earth.</span>
+    </h2>
+    <p class="lead">
+      We're working with mission-aligned partners across science, industry, and capital.
+      If that's you, we'd like to talk.
+    </p>
+    <div class="cta__actions">
+      <a href="mailto:hello@bluemarbleintel.com" class="btn btn--primary">hello@bluemarbleintel.com</a>
+      <a href="#" class="btn btn--ghost">Investor brief (PDF)</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =====================================================
+  9. FOOTER
+====================================================== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <img class="brand__logo" src="Bluemarble%20logo%20noBG.png" alt="" aria-hidden="true" />
+      <span>Blue Marble Intel</span>
+    </div>
+    <p class="footer__tag">Data first. Intelligence next. Intervention follows.</p>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="#platform">Platform</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#partners">Partners</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p class="footer__copy">© <span id="year"></span> Blue Marble Intel. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Three.js for hero globe -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

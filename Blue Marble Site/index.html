@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Blue Marble OS — Environmental intelligence for wildlife &amp; conservation</title>
+  <meta name="description" content="Blue Marble OS connects environmental data, AI and conservation partnerships to protect wildlife, restore ecosystems and measure real-world impact. See where nature needs help. Support those protecting it. Measure the difference." />
+  <meta name="theme-color" content="#010c20" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Blue Marble OS — Environmental intelligence for wildlife &amp; conservation" />
+  <meta property="og:description" content="A living view of the natural world. Blue Marble brings environmental intelligence, wildlife conservation and global action into one connected platform." />
+  <meta property="og:type" content="website" />
+
+  <!-- Favicon — inline SVG mark (brand guide "Concentric Precision" icon), no external file required -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect width='200' height='200' rx='40' fill='%23010c20'/%3E%3Ccircle cx='100' cy='100' r='76' fill='none' stroke='%23378ADD' stroke-width='4' stroke-opacity='0.3'/%3E%3Ccircle cx='100' cy='100' r='62' fill='none' stroke='%23378ADD' stroke-width='5' stroke-opacity='0.55'/%3E%3Ccircle cx='100' cy='100' r='47' fill='none' stroke='%2385B7EB' stroke-width='7'/%3E%3Ccircle cx='100' cy='100' r='30' fill='%23185FA5'/%3E%3C/svg%3E" />
+
+  <!-- Fonts — Inter (UI/body), Playfair Display (headline moments), per Blue Marble brand guide -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- =====================================================
+  GLOBAL ATMOSPHERE — fixed backdrop, sits behind all content.
+  Three CSS-only layers: radar sweep, drifting caustics, noise.
+====================================================== -->
+<div class="atmo" aria-hidden="true">
+  <div class="atmo__sweep"></div>
+  <div class="atmo__caustic atmo__caustic--a"></div>
+  <div class="atmo__caustic atmo__caustic--b"></div>
+  <div class="atmo__noise"></div>
+</div>
+
+<!-- =====================================================
+  NAVIGATION
+====================================================== -->
+<header class="nav" id="nav">
+  <div class="nav__inner container">
+    <a class="brand" href="#top" aria-label="Blue Marble OS home">
+      <svg class="brand__logo" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="bmMarkNav" cx="38%" cy="35%" r="65%">
+            <stop offset="0%"   stop-color="#c8e4f8"/>
+            <stop offset="22%"  stop-color="#4fa0d8"/>
+            <stop offset="55%"  stop-color="#0e4a8a"/>
+            <stop offset="100%" stop-color="#010c20"/>
+          </radialGradient>
+        </defs>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="#378ADD" stroke-width="1.6" stroke-opacity="0.3"/>
+        <circle cx="100" cy="100" r="73" fill="none" stroke="#378ADD" stroke-width="3.2" stroke-opacity="0.55"/>
+        <circle cx="100" cy="100" r="56" fill="none" stroke="#85B7EB" stroke-width="6"/>
+        <circle cx="100" cy="100" r="35" fill="url(#bmMarkNav)"/>
+        <ellipse cx="89" cy="89" rx="10" ry="6" fill="white" fill-opacity="0.28"/>
+      </svg>
+      <span class="brand__name">BLUE&nbsp;MARBLE<span class="brand__os">&nbsp;OS</span></span>
+    </a>
+    <nav class="nav__links" aria-label="Primary">
+      <a href="#platform">Platform</a>
+      <a href="#roadmap">Observe · Predict · Mobilise</a>
+      <a href="#exploration">Exploration</a>
+      <a href="#missions">Missions</a>
+      <a href="#partners">Partners</a>
+      <a href="#founder">Founder</a>
+    </nav>
+    <a href="#contact" class="btn btn--ghost nav__cta">Partner with us</a>
+    <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav__mobile" id="mobileMenu" hidden>
+    <a href="#platform">Platform</a>
+    <a href="#roadmap">Observe · Predict · Mobilise</a>
+    <a href="#exploration">Exploration</a>
+    <a href="#missions">Missions</a>
+    <a href="#partners">Partners</a>
+    <a href="#founder">Founder</a>
+    <a href="#contact" class="btn btn--primary">Partner with us</a>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- =====================================================
+  1. HERO — interactive WebGL globe behind the headline
+====================================================== -->
+<section class="hero">
+  <canvas id="globe" aria-hidden="true"></canvas>
+  <div class="hero__bloom" aria-hidden="true"></div>
+  <div class="hero__caustics" aria-hidden="true"></div>
+  <div class="hero__veil" aria-hidden="true"></div>
+  <div class="hero__inner container">
+    <p class="eyebrow"><span class="eyebrow__pulse"></span>Environmental intelligence, from orbit to ecosystem</p>
+    <h1 class="hero__title">
+      A living view<br/>
+      <span class="grad">of the natural world.</span>
+    </h1>
+    <p class="hero__sub">
+      Blue Marble brings environmental data, wildlife conservation and global action into one
+      connected platform — helping people understand where nature is under pressure, and support
+      the organisations protecting it.
+    </p>
+    <div class="hero__cta">
+      <a href="#roadmap" class="btn btn--primary">Explore the Planet</a>
+      <a href="#contact" class="btn btn--ghost">Partner With Blue Marble</a>
+    </div>
+    <div class="hero__stats">
+      <div><strong>1</strong><span>Living planet</span></div>
+      <div><strong>3</strong><span>Platform stages</span></div>
+      <div><strong>∞</strong><span>Data layers</span></div>
+    </div>
+  </div>
+  <a class="hero__scroll" href="#about" aria-label="Scroll to next section">
+    <span></span>
+  </a>
+</section>
+
+<!-- =====================================================
+  1b. THE PLATFORM — real product, shown on Mac + iPhone
+====================================================== -->
+<section class="section section--platform" id="platform">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">The platform</p>
+      <h2 class="h2">One living map. <span class="grad">Every device.</span></h2>
+      <p class="lead">
+        Marine and land wildlife intelligence, ocean and forest health scoring, animal tracking,
+        and climate signals — layered onto a real-time 3D globe, and available everywhere your
+        team and supporters are.
+      </p>
+    </div>
+
+    <div class="platform-devices">
+      <div class="device-mockup device-mockup--mac">
+        <div class="device-mockup__notch" aria-hidden="true"></div>
+        <div class="device-mockup__screen">
+          <img src="assets/desktopviewer.png" alt="Blue Marble platform dashboard showing marine intelligence layers, whale sightings, and ocean health scoring on a 3D globe" />
+        </div>
+        <div class="device-mockup__base" aria-hidden="true"></div>
+      </div>
+
+      <div class="device-mockup device-mockup--phone">
+        <div class="device-mockup__island" aria-hidden="true"></div>
+        <div class="device-mockup__screen">
+          <img src="assets/mobileviewer.jpg" alt="Blue Marble platform on iPhone showing a climate signal overlay and location pins on the 3D globe" />
+        </div>
+        <span class="device-mockup__button device-mockup__button--power" aria-hidden="true"></span>
+        <span class="device-mockup__button device-mockup__button--vol1" aria-hidden="true"></span>
+        <span class="device-mockup__button device-mockup__button--vol2" aria-hidden="true"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  2. WHAT BLUE MARBLE IS
+====================================================== -->
+<section class="section section--about" id="about">
+  <div class="container grid grid--split">
+    <div>
+      <p class="eyebrow">What we are</p>
+      <h2 class="h2">
+        A serious technology company<br/>
+        <span class="muted">with environmental purpose.</span>
+      </h2>
+    </div>
+    <div class="about__body">
+      <p class="lead">
+        Blue Marble empowers conservation organisations with environmental intelligence, global
+        visibility, mission-based fundraising, and measurable impact reporting — helping them
+        protect more wildlife, restore more habitats, and inspire more people to take action.
+      </p>
+      <p>
+        We believe the same tools that powered the last decade of consumer technology should now
+        be turned outward, toward the planet itself.
+        <strong>See where nature needs help. Support those protecting it. Measure the difference.</strong>
+      </p>
+      <ul class="ticks">
+        <li>Using technology for good</li>
+        <li>Connecting environmental intelligence with conservation action</li>
+        <li>Conservation through exploration</li>
+        <li>Every ecosystem is connected to the health of the whole planet</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  3. THREE-PHASE PLATFORM ROADMAP — V1, V2, V3
+====================================================== -->
+<section class="section section--roadmap" id="roadmap">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">The three-stage platform</p>
+      <h2 class="h2">From <span class="grad">observing</span> to <span class="grad">predicting</span> to <span class="grad">mobilising</span>.</h2>
+    </div>
+
+    <div class="roadmap">
+      <article class="phase phase--v1">
+        <span class="phase__corners" aria-hidden="true"></span>
+        <div class="phase__num">Observe</div>
+        <h3 class="phase__title">See what is happening now.</h3>
+        <p class="phase__tag">Explore the living planet, layer by layer.</p>
+        <p>
+          Explore wildlife, habitats, environmental threats, and ecosystem conditions through
+          one interactive global platform — oceans, forests, grasslands, rivers, wetlands and
+          polar environments, all in one interface.
+        </p>
+        <ul class="chips">
+          <li>Wildlife &amp; habitats</li><li>Ecosystem health</li><li>Threats &amp; pollution</li><li>Spatial layers</li>
+        </ul>
+      </article>
+
+      <article class="phase phase--v2">
+        <span class="phase__corners" aria-hidden="true"></span>
+        <div class="phase__num">Predict</div>
+        <h3 class="phase__title">Understand what may happen next.</h3>
+        <p class="phase__tag">AI that forecasts environmental risk.</p>
+        <p>
+          Use AI and environmental intelligence to identify emerging risks, vulnerable habitats,
+          and the areas where intervention could have the greatest effect — before damage
+          becomes irreversible.
+        </p>
+        <ul class="chips">
+          <li>Forecasting</li><li>Risk scoring</li><li>Change detection</li><li>Priority areas</li>
+        </ul>
+      </article>
+
+      <article class="phase phase--v3">
+        <span class="phase__corners" aria-hidden="true"></span>
+        <div class="phase__num">Mobilise</div>
+        <h3 class="phase__title">Turn understanding into action.</h3>
+        <p class="phase__tag">Connecting supporters with delivery partners.</p>
+        <p>
+          Connect trusted conservation organisations with supporters, sponsors, and funders to
+          launch targeted missions and deliver measurable environmental impact. Field robotics
+          and sensor networks are part of Blue Marble's longer-term evolution of this stage.
+        </p>
+        <ul class="chips">
+          <li>Missions</li><li>Funding</li><li>Delivery partners</li><li>Verified impact</li>
+        </ul>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  4. CONSERVATION THROUGH EXPLORATION
+====================================================== -->
+<section class="section section--explore" id="exploration">
+  <div class="container grid grid--split">
+    <div>
+      <p class="eyebrow">Why exploration matters</p>
+      <h2 class="h2">
+        Conservation <span class="grad">through exploration</span>
+      </h2>
+      <p class="lead">
+        The more clearly people can see the pressures facing wildlife and ecosystems, the more
+        powerfully they can respond. Blue Marble turns complex environmental information into
+        something people can explore, understand, and act upon.
+      </p>
+      <a href="#missions" class="btn btn--ghost">Explore active missions</a>
+    </div>
+    <div class="explore__visual" aria-hidden="true">
+      <div class="ring ring--1"></div>
+      <div class="ring ring--2"></div>
+      <div class="ring ring--3"></div>
+      <div class="orb"></div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  5. PLATFORM FEATURES / DATA LAYERS
+====================================================== -->
+<section class="section section--layers">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Data layers &amp; capabilities</p>
+      <h2 class="h2">One platform. <span class="grad">Every layer of the planet.</span></h2>
+    </div>
+    <div class="layers">
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 12c3-4 6-4 9 0s6 4 9 0"/><path d="M3 17c3-4 6-4 9 0s6 4 9 0"/><path d="M3 7c3-4 6-4 9 0s6 4 9 0"/></svg>
+        </div>
+        <h4>Wildlife &amp; habitat health</h4>
+        <p>Species ranges, migration corridors, habitat condition, pollution, and biodiversity indicators — from oceans to forests to polar regions.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg>
+        </div>
+        <h4>Global spatial layers</h4>
+        <p>Satellite imagery, coastlines, rivers, wetlands, grasslands, and ecosystems — all on a single interactive globe.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V8m6 12V4m6 16v-8m4 8V10"/></svg>
+        </div>
+        <h4>Predictive analytics</h4>
+        <p>AI forecasts of environmental risk, habitat loss, and where intervention could have the greatest effect.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l3 6 6 .9-4.5 4.2 1 6.4L12 16.8 6.5 19.5l1-6.4L3 8.9 9 8z"/></svg>
+        </div>
+        <h4>Field intervention <span class="muted">(future)</span></h4>
+        <p>A longer-term evolution: drones, sensors, and field robotics feeding the platform with ground-truth data.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18M7 14h4"/></svg>
+        </div>
+        <h4>Decision dashboards</h4>
+        <p>Built for conservation organisations, funders, and policy — clear, exportable, defensible.</p>
+      </div>
+      <div class="layer">
+        <div class="layer__icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 7h16M4 12h10M4 17h16"/><circle cx="18" cy="12" r="2"/></svg>
+        </div>
+        <h4>API &amp; integrations</h4>
+        <p>Stream Blue Marble OS into your existing tools, models, and operations.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  5b. MISSIONS — fund specific, evidence-led conservation projects
+  NOTE: the three cards below are illustrative examples of the mission
+  format (dev note only, not shown on page). Replace with real, live
+  campaigns before or as they launch.
+====================================================== -->
+<section class="section section--missions" id="missions">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Conservation missions</p>
+      <h2 class="h2">Fund the mission. <span class="grad">Follow the impact.</span></h2>
+      <p class="lead">
+        Support specific, evidence-led conservation projects and follow measurable impact
+        reporting as funding moves from public engagement to real-world action on land and at sea.
+      </p>
+    </div>
+    <div class="missions">
+      <article class="mission mission--ocean">
+        <div class="mission__head">
+          <span class="mission__eco">Marine · Coral Reef</span>
+        </div>
+        <h3 class="mission__title">Coral reef restoration</h3>
+        <p class="mission__loc">Indo-Pacific reef systems</p>
+        <p class="mission__meta"><strong>Delivery partner:</strong> Regional marine conservation partner</p>
+        <p class="mission__meta"><strong>Threat:</strong> Warming waters, bleaching, and reef degradation</p>
+        <div class="mission__progress" aria-hidden="true"><span style="width: 62%"></span></div>
+        <div class="mission__stats"><span>62% funded</span><span>Target: $120,000</span></div>
+        <p class="mission__outcome"><strong>Expected outcome:</strong> Restored reef structure and recovered fish biomass across priority sites.</p>
+      </article>
+
+      <article class="mission mission--forest">
+        <div class="mission__head">
+          <span class="mission__eco">Forest · Wildlife Corridor</span>
+        </div>
+        <h3 class="mission__title">Rainforest &amp; wildlife corridor protection</h3>
+        <p class="mission__loc">Tropical rainforest basin</p>
+        <p class="mission__meta"><strong>Delivery partner:</strong> Local forest conservation partner</p>
+        <p class="mission__meta"><strong>Threat:</strong> Habitat fragmentation and deforestation</p>
+        <div class="mission__progress" aria-hidden="true"><span style="width: 38%"></span></div>
+        <div class="mission__stats"><span>38% funded</span><span>Target: $200,000</span></div>
+        <p class="mission__outcome"><strong>Expected outcome:</strong> Protected migration corridors linking fragmented habitat for endangered species.</p>
+      </article>
+
+      <article class="mission mission--polar">
+        <div class="mission__head">
+          <span class="mission__eco">Polar · Sea Ice Habitat</span>
+        </div>
+        <h3 class="mission__title">Polar habitat monitoring</h3>
+        <p class="mission__loc">Arctic sea-ice margins</p>
+        <p class="mission__meta"><strong>Delivery partner:</strong> Polar research &amp; conservation partner</p>
+        <p class="mission__meta"><strong>Threat:</strong> Sea-ice loss and shifting species ranges</p>
+        <div class="mission__progress" aria-hidden="true"><span style="width: 21%"></span></div>
+        <div class="mission__stats"><span>21% funded</span><span>Target: $85,000</span></div>
+        <p class="mission__outcome"><strong>Expected outcome:</strong> Verified monitoring data supporting habitat protection decisions.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  6. IMPACT PARTNERS / BRAND PARTNERSHIPS
+====================================================== -->
+<section class="section section--partners" id="partners">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">For conservation organisations</p>
+      <h2 class="h2">Built to <span class="grad">strengthen conservation organisations</span></h2>
+      <p class="lead">
+        Blue Marble empowers conservation organisations with environmental intelligence, global
+        visibility, mission-based fundraising, and measurable impact reporting — helping them
+        protect more wildlife, restore more habitats, and inspire more people to take action,
+        without replacing the work they already do.
+      </p>
+    </div>
+    <div class="grid grid--split" style="margin-bottom: clamp(40px, 6vw, 72px);">
+      <ul class="ticks">
+        <li>Map species, habitats, and environmental threats</li>
+        <li>Display where you work, globally</li>
+        <li>Reach new supporters worldwide</li>
+        <li>Launch mission-based fundraising campaigns</li>
+      </ul>
+      <ul class="ticks">
+        <li>Raise funding from a global audience</li>
+        <li>Share real-time mission updates</li>
+        <li>Report measurable, verified impact</li>
+        <li>Build long-term supporter communities</li>
+      </ul>
+    </div>
+    <p class="muted partners__intro">Delivery partners can use the Blue Marble platform with no upfront membership fee.</p>
+
+    <!-- Partner logo grid — disabled until real delivery partners are confirmed.
+    To reinstate, uncomment this block and drop logo files into /assets/partners/.
+    <div class="partners">
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+      <div class="partner">Partner&nbsp;Logo</div>
+    </div>
+    -->
+  </div>
+</section>
+
+<!-- =====================================================
+  7. LEADERSHIP — compact 2-up executive cards
+====================================================== -->
+<section class="section section--execs" id="founder">
+  <div class="container">
+    <div class="section__head">
+      <p class="eyebrow">Leadership</p>
+      <h2 class="h2">The team building <span class="grad">planetary intelligence</span>.</h2>
+    </div>
+    <div class="execs">
+      <article class="exec">
+        <div class="exec__photo" aria-hidden="true">
+          <!-- Replace with: <img src="assets/jack-riley.jpg" alt="Jack Riley" /> -->
+          <span class="exec__initials">JR</span>
+        </div>
+        <div class="exec__body">
+          <h3 class="exec__name">Jack Riley</h3>
+          <p class="exec__role">CEO &amp; Founder</p>
+          <p class="exec__bio">
+            Jack Riley founded Blue Marble with a simple belief: the more clearly we understand
+            our planet, the better equipped we are to protect it. Driven by a passion for
+            conservation and technology, he created Blue Marble to bridge the gap between
+            environmental intelligence and real-world action.
+          </p>
+          <p class="exec__bio">
+            Taking a hands-on, boots-on-the-ground approach, Jack works closely with existing
+            conservation organisations while building new partnerships that deliver meaningful,
+            measurable impact. His vision is to create a global platform that empowers those
+            already protecting wildlife and ecosystems with the tools, data and support needed
+            to scale their mission.
+          </p>
+          <a href="#" class="exec__link">LinkedIn →</a>
+        </div>
+      </article>
+      <article class="exec">
+        <div class="exec__photo" aria-hidden="true">
+          <!-- Replace with: <img src="assets/daniel-stanley.jpg" alt="Daniel Stanley" /> -->
+          <span class="exec__initials">DS</span>
+        </div>
+        <div class="exec__body">
+          <h3 class="exec__name">Daniel Stanley</h3>
+          <p class="exec__role">COO &amp; Founder</p>
+          <p class="exec__bio">
+            Daniel Stanley is Co-Founder and Chief Operating Officer of Blue Marble, responsible
+            for turning vision into execution. With a strong background in operations,
+            engineering and strategic delivery, Daniel oversees the development of the platform,
+            ensuring innovative ideas become practical, scalable solutions.
+          </p>
+          <p class="exec__bio">
+            Working alongside conservation partners and technical teams, Daniel takes a
+            collaborative, hands-on approach to building the systems, processes and partnerships
+            that will enable Blue Marble to grow into a global platform for environmental
+            intelligence and conservation action.
+          </p>
+          <a href="#" class="exec__link">LinkedIn →</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- =====================================================
+  8. CALL TO ACTION — partners, investors, collaborators
+====================================================== -->
+<section class="section section--cta" id="contact">
+  <div class="container cta">
+    <p class="eyebrow">Partners · Funders · Conservation Organisations</p>
+    <h2 class="h2 cta__title">
+      Help build a <span class="grad">better future for the natural world</span>
+    </h2>
+    <p class="lead">
+      Whether you are a conservation organisation, funder, researcher, business, or supporter,
+      Blue Marble creates a clearer path from understanding environmental problems to protecting
+      more wildlife, restoring more habitats, and inspiring more people to take action.
+    </p>
+    <div class="cta__actions">
+      <a href="mailto:hello@bluemarbleos.com" class="btn btn--primary">Become a Partner</a>
+      <a href="#roadmap" class="btn btn--ghost">Explore Blue Marble</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- =====================================================
+  9. FOOTER
+====================================================== -->
+<footer class="footer">
+  <div class="container footer__inner">
+    <div class="footer__brand">
+      <svg class="brand__logo" viewBox="0 0 200 200" aria-hidden="true" focusable="false">
+        <defs>
+          <radialGradient id="bmMarkFooter" cx="38%" cy="35%" r="65%">
+            <stop offset="0%"   stop-color="#c8e4f8"/>
+            <stop offset="22%"  stop-color="#4fa0d8"/>
+            <stop offset="55%"  stop-color="#0e4a8a"/>
+            <stop offset="100%" stop-color="#010c20"/>
+          </radialGradient>
+        </defs>
+        <circle cx="100" cy="100" r="88" fill="none" stroke="#378ADD" stroke-width="1.6" stroke-opacity="0.3"/>
+        <circle cx="100" cy="100" r="73" fill="none" stroke="#378ADD" stroke-width="3.2" stroke-opacity="0.55"/>
+        <circle cx="100" cy="100" r="56" fill="none" stroke="#85B7EB" stroke-width="6"/>
+        <circle cx="100" cy="100" r="35" fill="url(#bmMarkFooter)"/>
+        <ellipse cx="89" cy="89" rx="10" ry="6" fill="white" fill-opacity="0.28"/>
+      </svg>
+      <span>Blue Marble OS</span>
+    </div>
+    <p class="footer__tag">Connecting environmental intelligence with conservation action.</p>
+    <nav class="footer__links" aria-label="Footer">
+      <a href="#platform">Platform</a>
+      <a href="#roadmap">Roadmap</a>
+      <a href="#missions">Missions</a>
+      <a href="#partners">Partners</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <p class="footer__copy">© <span id="year"></span> Blue Marble OS. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Three.js for hero globe -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
