@@ -43,7 +43,29 @@
       return;
     }
 
-    await window.Clerk.load();
+    await window.Clerk.load({
+      appearance: {
+        variables: {
+          colorPrimary: '#378ADD',        // Horizon Blue — brand accent
+          colorBackground: '#031326',     // c-bg-2 — modal card surface
+          colorInputBackground: '#010c20', // c-bg — Deep Space
+          colorInputText: '#E6F1FB',      // c-text — Chrome Light
+          colorText: '#E6F1FB',
+          colorTextSecondary: '#B5D4F4',  // c-text-dim
+          colorNeutral: '#7d93b3',        // c-muted
+          colorDanger: '#ef4444',
+          colorSuccess: '#22c55e',
+          borderRadius: '16px',
+          fontFamily: 'Inter, -apple-system, sans-serif',
+        },
+        elements: {
+          card: {
+            boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
+            border: '1px solid rgba(181, 212, 244, 0.14)',
+          },
+        },
+      },
+    });
 
     const buttons = [
       document.getElementById('navLoginBtn'),
