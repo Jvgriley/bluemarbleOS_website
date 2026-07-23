@@ -20,6 +20,15 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet" />
 
+  <!-- Clerk (vanilla JS, no build step — matches how three.js is loaded below) -->
+  <script
+    async
+    crossorigin="anonymous"
+    data-clerk-publishable-key="pk_test_bmF0aW9uYWwtZG9yeS0zMy5jbGVyay5hY2NvdW50cy5kZXYk"
+    src="https://national-dory-33.clerk.accounts.dev/npm/@clerk/clerk-js@latest/dist/clerk.browser.js"
+    type="text/javascript"
+  ></script>
+
   <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -67,6 +76,7 @@
       <a href="#partners">Partners</a>
       <a href="#founder">Founder</a>
     </nav>
+    <button type="button" id="navLoginBtn" class="btn btn--ghost">Log in</button>
     <a href="#contact" class="btn btn--ghost nav__cta">Partner with us</a>
     <button class="nav__toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
@@ -79,6 +89,7 @@
     <a href="#missions">Missions</a>
     <a href="#partners">Partners</a>
     <a href="#founder">Founder</a>
+    <button type="button" id="navLoginBtnMobile" class="btn btn--ghost">Log in</button>
     <a href="#contact" class="btn btn--primary">Partner with us</a>
   </div>
 </header>
@@ -556,5 +567,6 @@
 <!-- Three.js for hero globe -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="script.js"></script>
+<script src="clerk-auth.js"></script>
 </body>
 </html>
